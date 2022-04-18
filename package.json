@@ -1,0 +1,30 @@
+{
+  "name": "statsbot",
+  "version": "1.0.0",
+  "description": "A reddit bot to show user stats",
+  "main": "dist/index.js",
+  "repository": "https://github.com/chirag-droid/statsbot",
+  "author": "chirag-droid<chirag.singla.pi@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf ./dist",
+    "dev": "cross-env NODE_ENV=development nodemon ./index.ts",
+    "prestart": "npm run build",
+    "start": "cross-env NODE_ENV=production node ./dist/index.js"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.24",
+    "dotenv": "^16.0.0",
+    "puppeteer": "^13.5.2",
+    "snoostorm": "^1.5.2",
+    "snoowrap": "^1.23.0",
+    "typescript": "^4.6.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.15",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.7.0"
+  }
+}
