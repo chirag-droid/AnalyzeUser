@@ -5,11 +5,9 @@ class MetisClient {
 
   // selector for the synopsis
   SYNOPSIS = `
-    #app > div > div:nth-child(2) > div >
-    div > div:nth-child(2) > div.row.mt-4 > div > div:nth-child(2) >
-    div:nth-child(2) > div > div > div > div > div
+    div.row.mt-4 > div > div:nth-child(2) >
+    div:nth-child(2) > div > div > div > div
   `;
-
 
   private constructor(browser: puppeteer.Browser) {
     this.browser = browser;
@@ -47,13 +45,21 @@ class MetisClient {
     // get the page
     const page = await this.getUserPage(user);
 
-    const synopsis = await page.$$eval(this.SYNOPSIS, synopsis => {
-      return synopsis.map((node, index) => {
-        if (index % 2 === 0) return node.textContent;
+    const synopsis: Map<string, Array<string>> = new Map();
 
-        return node.textContent?.replace(/#+$/, "").split(/#+/g);
+    const rawSynopsis = await page.$$(this.SYNOPSIS);
+
+    for (const v of rawSynopsis) {
+      const title  = await v.$eval("p.sublabel", title => title.textContent);
+
+      if (!title) return;
+
+      const guesses = await v.$$eval("span.guess", guesses => {
+        return guesses.map(guess => guess.textContent || "");
       });
-    });
+
+      synopsis.set(title, guesses);
+    };
 
     // close the page
     await page.close();
