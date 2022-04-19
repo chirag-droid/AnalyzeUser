@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@types/node": "^17.0.24",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "puppeteer": "^13.5.2",
     "snoostorm": "^1.5.2",
@@ -22,7 +23,6 @@
     "typescript": "^4.6.3"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3",
     "nodemon": "^2.0.15",
     "rimraf": "^3.0.2",
     "ts-node": "^10.7.0"
