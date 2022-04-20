@@ -19,7 +19,6 @@
       "quantity": 1
     }
   },
-  {
   "env": {
     "CLIENT_ID": {
       "description": "You reddit app's client id",
