@@ -55,11 +55,13 @@ class MetisClient {
 
       if (!title) return;
 
+      const prevGuesses = synopsis.get(title) || [];
+
       const guesses = await v.$$eval("span.guess", guesses => {
         return guesses.map(guess => guess.textContent || "");
       });
 
-      synopsis.set(title, guesses);
+      synopsis.set(title, prevGuesses.concat(guesses));
     };
 
     // close the page
