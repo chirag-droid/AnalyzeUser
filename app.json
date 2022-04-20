@@ -18,5 +18,28 @@
     "worker": {
       "quantity": 1
     }
+  },
+  {
+  "env": {
+    "CLIENT_ID": {
+      "description": "You reddit app's client id",
+    },
+    "CLIENT_SECRET": {
+      "description": "You reddit app's client secret",
+    },
+    "REDDIT_USER": {
+      "description": "The username of the bot account."
+    },
+    "REDDIT_PASS": {
+      "description": "The password for the bot account."
+    },
+    "BOT_OWNER": {
+      "description": "The person who is the owner of the bot",
+      "value": "NoMeatFingering"
+    },
+    "PREFIX": {
+      "description": "The prefix to use for the bot",
+      "required": false
+    }
   }
 }
