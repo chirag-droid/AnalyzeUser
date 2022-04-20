@@ -5,10 +5,10 @@
   "logo": "https://i.redd.it/snoovatar/avatars/67a5b401-0967-4938-82fd-d68134d614d1.png",
   "buildpacks": [
     {
-      "url": "heroku/node"
+      "url": "heroku/nodejs"
     },
     {
-      "url": "https://github.com/jontewks/puppeteer-heroku-buildpack"
+      "url": "https://github.com/jontewks/puppeteer-heroku-buildpack.git"
     }
   ],
   "formation": {
