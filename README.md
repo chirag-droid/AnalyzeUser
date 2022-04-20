@@ -43,3 +43,7 @@ Start the bot
 ```bash
   yarn start
 ```
+
+## Deploy online
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)

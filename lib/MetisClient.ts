@@ -18,6 +18,7 @@ class MetisClient {
     // launch the browser in headless mode if in production
     const browser = await puppeteer.launch({
       headless: process.env.NODE_ENV === 'production',
+      args: ['--no-sandbox']
     });
 
     return new MetisClient(browser);

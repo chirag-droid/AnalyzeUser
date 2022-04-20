@@ -10,7 +10,6 @@
     "build": "tsc",
     "clean": "rimraf ./dist",
     "dev": "cross-env NODE_ENV=development nodemon ./index.ts",
-    "prestart": "npm run build",
     "start": "cross-env NODE_ENV=production node ./dist/index.js"
   },
   "dependencies": {

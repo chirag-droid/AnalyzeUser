@@ -1,0 +1,22 @@
+{
+  "name": "RedditUtilityBot",
+  "description": "A reddit utility bot, with various different commands to help you surf reddit better. Has a command to analyse a user based on comments and post and many more.",
+  "repository": "https://github.com/chirag-droid/redditutilitybot",
+  "logo": "https://i.redd.it/snoovatar/avatars/67a5b401-0967-4938-82fd-d68134d614d1.png",
+  "buildpacks": [
+    {
+      "url": "heroku/node"
+    },
+    {
+      "url": "https://github.com/jontewks/puppeteer-heroku-buildpack"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 0
+    },
+    "worker": {
+      "quantity": 1
+    }
+  }
+}
