@@ -37,14 +37,12 @@ export class UserStats extends Command {
       return;
     }
 
-    const botMes = message.reply(`Processing user statistics for ${user.name}`) as unknown as VoteableContent<Comment>;
-
     const stats = await this.metisClient.getUserStats(user.name);
 
     const synopsis = stats?.synopsis || new Map();
 
     if (synopsis.size === 0) {
-      botMes.edit("An unexpected error occurred.")
+      message.reply("An unexpected error occurred.")
       return;
     }
 
@@ -57,7 +55,7 @@ export class UserStats extends Command {
 
     comment += "\n\n^(This data might not be completely correct.)"
 
-    botMes.edit(comment);
+    message.reply(comment);
   }
 }
 
