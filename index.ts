@@ -50,8 +50,11 @@ const inbox = new InboxStream(bot, {
 
 // process each comment
 inbox.on('item', async (item) => {
+  // convert the message content to lower case
+  item.body = item.body.toLowerCase();
+
   // get the prefix from the env
-  const prefix = `u/${process.env.REDDIT_USER}`;
+  const prefix = `u/${process.env.REDDIT_USER}`.toLowerCase();
 
   // return if the prefix doesn't match
   if (item.body.indexOf(prefix) !== 0) return;
