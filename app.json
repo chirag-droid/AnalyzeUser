@@ -35,10 +35,6 @@
     "BOT_OWNER": {
       "description": "The person who is the owner of the bot",
       "value": "NoMeatFingering"
-    },
-    "PREFIX": {
-      "description": "The prefix to use for the bot",
-      "required": false
     }
   }
 }

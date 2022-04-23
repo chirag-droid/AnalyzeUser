@@ -1,13 +1,10 @@
 import fs from 'fs';
 import dotenv from 'dotenv';
-import Snoowrap, { PrivateMessage } from 'snoowrap';
+import Snoowrap from 'snoowrap';
 import { InboxStream } from 'snoostorm';
 
 import CommandProps from './lib/Command';
 import RedditBot from './lib/RedditBot';
-
-// Record the time when the bot started
-const BOT_START = Date.now() / 1000;
 
 // configure the environment variables from .env file
 dotenv.config();

@@ -1,4 +1,4 @@
-import { Comment, RedditUser, VoteableContent } from "snoowrap";
+import { Comment, RedditUser } from "snoowrap";
 import CommandProps, { Command } from "../lib/Command";
 import Snoowrap from "snoowrap";
 import MetisClient from "../lib/MetisClient";
