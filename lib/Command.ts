@@ -1,4 +1,4 @@
-import Snoowrap from "snoowrap";
+import Snoowrap, { PrivateMessage } from "snoowrap";
 
 export abstract class Command {
   abstract name: string;
@@ -6,7 +6,7 @@ export abstract class Command {
 
   constructor(arg: any) {};
 
-  abstract execute(client: Snoowrap, message: Snoowrap.Comment, args: Array<string>): Promise<void>;
+  abstract execute(client: Snoowrap, message: Snoowrap.Comment | PrivateMessage, args: Array<string>): Promise<void>;
 }
 
 export default interface CommandProps {

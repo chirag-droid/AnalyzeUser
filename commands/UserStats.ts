@@ -18,7 +18,7 @@ export class UserStats extends Command {
     let user: RedditUser | undefined;
 
     // if no args the user is the one replied to
-    if (args.length === 0) {
+    if (args.length === 0 || args[0] === '') {
       const content = await client.getContentByIds([message.parent_id]);
       user = content[0].author
     };

@@ -16,6 +16,11 @@ class RedditBot extends Snoowrap {
     // Log the command loaded message
     console.log(`👌 Command loaded: ${command.name}`);
   }
+
+  getCommand(command: string) {
+    // get the command
+    return this.commands.get(command.toLowerCase());
+  }
 }
 
 export default RedditBot;

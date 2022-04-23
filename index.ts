@@ -1,11 +1,10 @@
 import fs from 'fs';
 import dotenv from 'dotenv';
-import Snoowrap from 'snoowrap';
-import { CommentStream } from 'snoostorm';
+import Snoowrap, { PrivateMessage } from 'snoowrap';
+import { InboxStream } from 'snoostorm';
 
-import config from './config';
+import CommandProps from './lib/Command';
 import RedditBot from './lib/RedditBot';
-import CommandProps from './commands/UserStats';
 
 // Record the time when the bot started
 const BOT_START = Date.now() / 1000;
@@ -34,26 +33,28 @@ bot.getMe().then(me => {
 });
 
 // Setup all the commands
-fs.readdir("./commands/", (_err, files) => {
-  files.forEach(async (file) => {
-    // get the command props which is exported as default
-    const command: typeof CommandProps = require(`./commands/${file.replace(".ts", "")}`).default;
+fs.readdir("./commands/", async (_err, files) => {
+  for (let file of files) {
+    file = `./commands/${file.replace(".ts", "")}`;
 
-    // add the command after setting it up properly
+    // get the command props which is exported as default
+    const command: CommandProps = require(file).default;
+
     bot.addCommand(await command.setup());
-  })
+  }
 });
 
 // Create a comment stream from snoostorm
-const comments = new CommentStream(bot, config);
+const inbox = new InboxStream(bot, {
+  filter: 'unread',
+  pollTime: 2000,
+  limit: 15,
+});
 
 // process each comment
-comments.on('item', async (item) => {
-  if (item.created_utc < BOT_START) return;
-  // only process if the comment is after the bot started
-
+inbox.on('item', async (item) => {
   // get the prefix from the env
-  const prefix = process.env.PREFIX || "!";
+  const prefix = `u/${process.env.REDDIT_USER}`;
 
   // return if the prefix doesn't match
   if (item.body.indexOf(prefix) !== 0) return;
@@ -61,14 +62,13 @@ comments.on('item', async (item) => {
   // get all the command arguments
   const args = item.body.slice(prefix.length).trim().split(/ +/g);
 
-  // separate the command name and the arguments
-  if (args.length < 1 || !args) return;
-  const command = args.shift()?.toLowerCase() || "";
-
-  // get the command from the collection and return if doesn't exist
-  const cmd = bot.commands.get(command);
+  // get the userstats command
+  const cmd = bot.getCommand('UserStats');
   if (!cmd) return;
 
   // execute the command
   await cmd.execute(bot, item, args);
+
+  // mark the comment as read
+  bot.markMessagesAsRead([item.name]);
 })
