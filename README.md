@@ -1,6 +1,6 @@
-# Reddit Utility Bot
+# Analyze Bot
 
-A reddit utility bot, with various different commands to help you surf reddit better. Has a command to analyse a user based on comments and post and many more.
+A reddit bot that sends a user's stats based on his/her last 1000's comments and posts.
 
 ## Environment Variables
 
@@ -23,13 +23,13 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-  git clone https://github.com/chirag-droid/reddditutilitybot
+  git clone https://github.com/chirag-droid/AnalyzeBot
 ```
 
 Go to the project directory
 
 ```bash
-  cd redditutilitybot
+  cd AnalyzeBot
 ```
 
 Install dependencies
@@ -45,5 +45,7 @@ Start the bot
 ```
 
 ## Deploy online
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/rtsip8?referralCode=km83_N)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
