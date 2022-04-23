@@ -23,7 +23,7 @@ export class UserStats extends Command {
       user = content[0].author
     };
 
-    if (args.length > 0) {
+    if (!user && args.length > 0) {
       const _user = client.getUser(args[0].replace("u/", ""));
 
       try {
