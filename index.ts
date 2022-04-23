@@ -44,7 +44,7 @@ fs.readdir("./commands/", async (_err, files) => {
 // Create a comment stream from snoostorm
 const inbox = new InboxStream(bot, {
   filter: 'unread',
-  pollTime: 2000,
+  pollTime: 3000,
   limit: 15,
 });
 
@@ -66,9 +66,17 @@ inbox.on('item', async (item) => {
   const cmd = bot.getCommand('UserStats');
   if (!cmd) return;
 
-  // execute the command
-  await cmd.execute(bot, item, args);
+  try {
+    // execute the command
+    await cmd.execute(bot, item, args);
 
-  // mark the comment as read
-  bot.markMessagesAsRead([item.name]);
+    // mark the comment as read
+    bot.markMessagesAsRead([item.name]);
+  } catch(e) {
+    let message;
+    if (e instanceof Error) message = e.message;
+    else message = String(e);
+
+    console.log(message);
+  }
 })
